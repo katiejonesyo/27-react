@@ -1,13 +1,19 @@
-import React, { Component } from 'react'
-import 'src/components/avatar/Avatar.css'
+import React, { Component } from "react";
+import List from "../list/List";
+import getAllCharacters from "../../services/getAllCharacters";
 
 export default class Home extends Component {
-    render() {
-        return (
-            <div>
-                
-            </div>
-        )
-    }
+  state = {
+    characters: [],
+  };
+
+  componentDidMount() {
+    return getAllCharacters().then((characters) => this.setState({ characters }));
+  }
+
+  render() {
+    const { characters } = this.state;
+    return <List characters={characters} />;
+  }
 }
 
